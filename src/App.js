@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import '@fontsource/roboto';
 import './App.css';
 
+import Stats from './components/StatsComponent.js';
+
 function App() {
   const [data, updateData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,15 +34,10 @@ function App() {
 
   return (
     <div className="App">
-      <p>
-        {
-          data
-          ?
-          JSON.stringify(data)
-          :
-          ""
-        }
-      </p>
+      <header>
+        <h1>IP Address Tracker</h1>
+      </header>
+      <Stats data={data} />
     </div>
   );
 }
