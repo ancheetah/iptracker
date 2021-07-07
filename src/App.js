@@ -3,6 +3,7 @@ import '@fontsource/roboto';
 import './App.css';
 
 import Stats from './components/StatsComponent.js';
+import Header from './components/HeaderComponent.js';
 
 function App() {
   // const [data, updateData] = useState(null);
@@ -50,9 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h2>IP Address Tracker</h2>
-      </header>
+      <Header/>
       {/* <p>{JSON.stringify(data)}</p> */}
       <Stats ipStats={ipStats} />
     </div>

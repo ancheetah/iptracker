@@ -5,8 +5,9 @@ import {Box, Grid, Divider} from '@material-ui/core';
 
 const useStyles = makeStyles({
     statBox: {
-      padding: '1.5rem',
-      margin: '2rem 6rem'
+        backgroundColor: '#ffffff',
+        padding: '1.5rem',
+        margin: '-4rem 6rem'
     },
     statItem: {
         padding: '0 1.5rem',
