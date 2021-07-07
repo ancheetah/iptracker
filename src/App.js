@@ -5,9 +5,17 @@ import './App.css';
 import Stats from './components/StatsComponent.js';
 
 function App() {
-  const [data, updateData] = useState(null);
+  // const [data, updateData] = useState(null);
   const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
+  const [ipStats, updateIpStats] = useState(
+    {
+      ip: "192.212.174",
+      location: "Brooklyn, NY 10001",
+      timezone: "UTC -05:00",
+      isp: "SpaceX Starlink"
+    }
+  );
 
   useEffect( () => {
     setLoading(true);
@@ -22,7 +30,15 @@ function App() {
         }
       })
       .then( data => {
-        updateData(data);
+        // updateData(data);
+        updateIpStats(
+          {
+            ip: data.ip,
+            location: `${data.location.city} ${data.location.region}, ${data.location.postalCode}`,
+            timezone: data.location.timezone,
+            isp: data.isp
+          }
+        );
       })
       .finally(setLoading(false));
 
@@ -35,9 +51,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>IP Address Tracker</h1>
+        <h2>IP Address Tracker</h2>
       </header>
-      <Stats data={data} />
+      {/* <p>{JSON.stringify(data)}</p> */}
+      <Stats ipStats={ipStats} />
     </div>
   );
 }
