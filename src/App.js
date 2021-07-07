@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import '@fontsource/roboto';
+import 'leaflet/dist/leaflet.css';
 import './App.css';
 
 import Stats from './components/StatsComponent.js';
 import Header from './components/HeaderComponent.js';
+import MapComponent from './components/MapComponent.js';
 
 function App() {
   // const [data, updateData] = useState(null);
@@ -54,6 +56,7 @@ function App() {
       <Header/>
       {/* <p>{JSON.stringify(data)}</p> */}
       <Stats ipStats={ipStats} />
+      <MapComponent/>
     </div>
   );
 }
