@@ -5,12 +5,14 @@ import {Box, Grid, Divider} from '@material-ui/core';
 
 const useStyles = makeStyles({
     statBox: {
+        position: 'fixed',
+        width: '70vw',
         backgroundColor: '#ffffff',
         padding: '1.5rem',
-        margin: '-4rem 6rem'
+        margin: '-4rem 15vw 0 15vw',
     },
     statItem: {
-        padding: '0 1.5rem',
+        // padding: '0 1.5rem',
     },
     description: {
         fontSize: 18,
@@ -36,8 +38,8 @@ const Stats = (props) => {
     }
 
     return (
-        <Box border={1} borderColor="grey.400" borderRadius={10} className={styles.statBox}>
-            <Grid container>
+        <Box border={1} borderColor="grey.400" borderRadius={10} zIndex="modal" className={styles.statBox}>
+            <Grid container spacing={6}>
                 <StatCard name="IP Address" description={stats.ip}/>
                 <Divider orientation="vertical" flexItem/>
                 <StatCard name="Location" description={stats.location}/>
