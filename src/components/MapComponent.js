@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Box } from '@material-ui/core';
 // import L from 'leaflet';
 
-const MapComponent = (props) => {
+const MapComponent = ({coordinates}) => {
   
     // Set map bounds
     let minLat = 180,
@@ -11,8 +11,8 @@ const MapComponent = (props) => {
     let minLng = 180,
         maxLng = -180;
 
-    let lat = 40.7128;
-    let lng = -74.006;
+    let lat = coordinates[0];
+    let lng = coordinates[1];
 
     if (lat < minLat) {
         minLat = lat;
@@ -40,7 +40,7 @@ const MapComponent = (props) => {
         [minLat, minLng],
         [maxLat, maxLng]
     ];
-    // console.log(bounds)
+    console.log(lat, lng, bounds)
 
     return (
         <Box>
@@ -54,7 +54,7 @@ const MapComponent = (props) => {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
-                <Marker position={[40.7128, -74.006]}>
+                <Marker position={[lat,lng]}>
                     <Popup>
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>

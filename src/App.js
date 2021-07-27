@@ -15,6 +15,7 @@ function App() {
     {
       ip: "192.212.174",
       location: "Brooklyn, NY 10001",
+      coordinates: [40.650002,-73.993286],
       timezone: "UTC -05:00",
       isp: "SpaceX Starlink"
     }
@@ -26,7 +27,7 @@ function App() {
 
     fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&" + search)
       .then(response => {
-        // console.log(response);
+        console.log(response);
         if (response.ok) {
           return response.json();
         } else {
@@ -35,10 +36,12 @@ function App() {
         }
       })
       .then( data => {
+        console.log(data);
         updateIpStats(
           {
             ip: data.ip,
             location: `${data.location.city} ${data.location.region}, ${data.location.postalCode}`,
+            coordinates: [data.location.lat, data.location.lng],
             timezone: data.location.timezone,
             isp: data.isp
           }
@@ -65,7 +68,7 @@ function App() {
         error ? <p>Error retrieving data.</p>
         : <Stats ipStats={ipStats} />
       }
-      <MapComponent/>
+      <MapComponent coordinates={ipStats.coordinates}/>
     </div>
   );
 }
