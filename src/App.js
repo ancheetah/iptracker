@@ -10,7 +10,7 @@ import MapComponent from './components/MapComponent.js';
 function App() {
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [ipStats, updateIpStats] = useState(
     {
       ip: "192.212.174",
@@ -20,15 +20,18 @@ function App() {
     }
   );
 
-  const fetchStats = (ip) => {
+  const fetchStats = (search) => {
     setLoading(true);
+    setError(false);
 
-    fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&ipAddress=" + ip)
+    fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&" + search)
       .then(response => {
+        // console.log(response);
         if (response.ok) {
           return response.json();
         } else {
-          throw response;
+          console.log(`Status code ${response.status}. Error: ${response.statusText}`);
+          throw Error(response.statusText);
         }
       })
       .then( data => {
@@ -41,22 +44,27 @@ function App() {
           }
         );
       })
+      .catch( error => setError(error))
       .finally(setLoading(false));
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchStats(userInput);
-  }
-
-  if (loading) {
-    return "Loading..."
+    // Check if input is ip address or domain
+    const ipRegex = /^\d.*\d$/;
+    const searchType = ipRegex.test(userInput) ? 'ipAddress' : 'domain';
+    
+    fetchStats(searchType + '=' + userInput);
   }
 
   return (
     <div className="App">
       <Header handleSubmit={handleSubmit} setUserInput={setUserInput}/>
-      <Stats ipStats={ipStats} />
+      {
+        loading ? <p>Fetching data...</p> :
+        error ? <p>Error retrieving data.</p>
+        : <Stats ipStats={ipStats} />
+      }
       <MapComponent/>
     </div>
   );
