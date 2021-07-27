@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container, TextField, InputAdornment, IconButton} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
         header: {
@@ -14,12 +13,21 @@ const useStyles = makeStyles({
             
             "& .MuiFilledInput-root": {
                 background: 'rgba(255, 255, 255, 1)',
+                paddingRight: '0',
+                paddingLeft: '1rem',
+                borderRadius: '0.7rem 0 0 0.7rem'
             },
             "& .MuiFilledInput-input": {
                 borderBottom: "0 !important",
                 marginBottom: "0 !important",
-                paddingLeft: '1rem !important',
+                // borderRadius: '2% 0 0 2% !important'
             }
+        },
+        button: {
+            padding: '1rem',
+            marginRight: '-0.7rem',
+            background: '#000000',
+            borderRadius: '0 0.7rem 0.7rem 0',
         }
     }
 );
@@ -45,7 +53,9 @@ const Header = (props) => {
                             disableUnderline: true,
                             endAdornment: 
                                 <InputAdornment position="end">
-                                    <IconButton type="submit"><SearchIcon/></IconButton>
+                                    <IconButton type="submit" className={classes.button}>
+                                        <img src="../icon-arrow.svg" alt="search button"/>
+                                    </IconButton>
                                 </InputAdornment>
                             }}
                         InputLabelProps={{

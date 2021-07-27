@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import L from 'leaflet';
 import { Box } from '@material-ui/core';
 
 const MapComponent = ({coordinates}) => {
@@ -18,6 +19,8 @@ const MapComponent = ({coordinates}) => {
         map.fitBounds(coords.bounds);
         return null;
     } 
+
+    const marker =  new L.Icon({ iconUrl: '../icon-location.svg' });
   
     useEffect( () => {
     // Set map bounds
@@ -80,11 +83,7 @@ const MapComponent = ({coordinates}) => {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
-                <Marker position={[coords.lat,coords.lng]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
+                <Marker position={[coords.lat,coords.lng]} icon={marker} />
                 <ChangeView coords={coords}/>
             </MapContainer>
         </Box>
