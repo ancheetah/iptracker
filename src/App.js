@@ -27,7 +27,7 @@ function App() {
 
     fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&" + search)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         if (response.ok) {
           return response.json();
         } else {
@@ -36,7 +36,7 @@ function App() {
         }
       })
       .then( data => {
-        console.log(data);
+        // console.log(data);
         updateIpStats(
           {
             ip: data.ip,

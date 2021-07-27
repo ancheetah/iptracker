@@ -31,7 +31,7 @@ const Header = (props) => {
     }
     return (
         <header className={classes.header}>
-            <h2 style={{"margin-top":0, "font-size":"20pt"}}>IP Address Tracker</h2>
+            <h2 style={{"marginTop":0, "fontSize":"20pt"}}>IP Address Tracker</h2>
 
             <Container maxWidth="sm">
                 <form onSubmit={props.handleSubmit}>

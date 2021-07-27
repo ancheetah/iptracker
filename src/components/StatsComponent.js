@@ -23,6 +23,7 @@ const useStyles = makeStyles({
 const Stats = (props) => {
     const styles = useStyles();
     const stats = props.ipStats;
+    // console.log(stats);
 
     const StatCard = (props) => {
         return (
