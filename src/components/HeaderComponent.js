@@ -26,22 +26,26 @@ const useStyles = makeStyles({
 
 const Header = (props) => {
     const classes = useStyles();
+    const handleChange = (event) => {
+        props.setUserInput(event.target.value);
+    }
     return (
         <header className={classes.header}>
             <h2 style={{"margin-top":0, "font-size":"20pt"}}>IP Address Tracker</h2>
 
             <Container maxWidth="sm">
-                <form action="" noValidate>
+                <form onSubmit={props.handleSubmit}>
                     <TextField 
                         fullWidth
                         variant="filled"
                         color="secondary"
                         placeholder="Search for any IP address or domain"
+                        onChange={handleChange}
                         InputProps={{
                             disableUnderline: true,
                             endAdornment: 
                                 <InputAdornment position="end">
-                                    <IconButton><SearchIcon/></IconButton>
+                                    <IconButton type="submit"><SearchIcon/></IconButton>
                                 </InputAdornment>
                             }}
                         InputLabelProps={{

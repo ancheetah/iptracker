@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import '@fontsource/roboto';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
@@ -8,7 +8,7 @@ import Header from './components/HeaderComponent.js';
 import MapComponent from './components/MapComponent.js';
 
 function App() {
-  // const [data, updateData] = useState(null);
+  const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
   const [ipStats, updateIpStats] = useState(
@@ -20,20 +20,18 @@ function App() {
     }
   );
 
-  useEffect( () => {
+  const fetchStats = (ip) => {
     setLoading(true);
 
-    fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&ipAddress=8.8.8.8")
+    fetch("https://geo.ipify.org/api/v1?apiKey=at_p0qchqpbAVlxMUkOgbHRyaKERKFCe&ipAddress=" + ip)
       .then(response => {
         if (response.ok) {
-          // console.log(response.json());
           return response.json();
         } else {
           throw response;
         }
       })
       .then( data => {
-        // updateData(data);
         updateIpStats(
           {
             ip: data.ip,
@@ -44,8 +42,12 @@ function App() {
         );
       })
       .finally(setLoading(false));
+  }
 
-  }, [])
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetchStats(userInput);
+  }
 
   if (loading) {
     return "Loading..."
@@ -53,8 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header/>
-      {/* <p>{JSON.stringify(data)}</p> */}
+      <Header handleSubmit={handleSubmit} setUserInput={setUserInput}/>
       <Stats ipStats={ipStats} />
       <MapComponent/>
     </div>
