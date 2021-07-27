@@ -22,7 +22,7 @@ Users should be able to:
 
 ### Screenshot
 
-![]('../public/Screen Shot 2021-07-27 at 4.23.20 PM.png')
+![Screenshot]('https://github.com/ancheetah/iptracker/blob/main/public/Screen%20Shot%202021-07-27%20at%204.23.20%20PM.png')
 
 ### Links
 
