@@ -20,7 +20,7 @@ const MapComponent = ({coordinates}) => {
         return null;
     } 
 
-    const marker =  new L.Icon({ iconUrl: '../icon-location.svg' });
+    const marker =  new L.Icon({ iconUrl: process.env.PUBLIC_URL + '/icon-location.svg' });
   
     useEffect( () => {
     // Set map bounds

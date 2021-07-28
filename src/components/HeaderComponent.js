@@ -54,7 +54,7 @@ const Header = (props) => {
                             endAdornment: 
                                 <InputAdornment position="end">
                                     <IconButton type="submit" className={classes.button}>
-                                        <img src="../icon-arrow.svg" alt="search button"/>
+                                        <img src={process.env.PUBLIC_URL + "/icon-arrow.svg"} alt="search button"/>
                                     </IconButton>
                                 </InputAdornment>
                             }}
