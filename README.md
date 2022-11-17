@@ -15,7 +15,7 @@ This is my solution to the [IP address tracker challenge on Frontend Mentor](htt
 
 Users should be able to:
 
-- View the optimal layout for each page depending on their device's screen size (only desktop version completed)
+- View the optimal layout for each page depending on their device's screen size
 - See hover states for all interactive elements on the page (to do)
 - See their own IP address on the map on the initial page load (to do)
 - Search for any IP addresses or domains and see the key information and location
