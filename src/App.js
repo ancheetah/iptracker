@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '@fontsource/roboto';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
@@ -11,13 +11,14 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [userIp, setUserIp] = useState('');
   const [ipStats, updateIpStats] = useState(
     {
-      ip: "192.212.174",
-      location: "Brooklyn, NY 10001",
+      ip: "",
+      location: "",
       coordinates: [40.650002,-73.993286],
-      timezone: "UTC -05:00",
-      isp: "SpaceX Starlink"
+      timezone: "",
+      isp: ""
     }
   );
 
@@ -59,6 +60,27 @@ function App() {
     
     fetchStats(searchType + '=' + userInput);
   }
+
+  useEffect( () => {
+
+    fetch("https://api.ipify.org?format=json")
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log(`Status code ${response.status}. Error: ${response.statusText}`);
+        throw Error(response.statusText);
+      }
+    })
+    .then( data => {
+      setUserIp(data.ip);
+    });
+
+    // if (userIp) {
+      // console.log('userIp =', userIp)
+      fetchStats('ipAddress=' + userIp);
+    // }
+  }, [])
 
   return (
     <div className="App">
