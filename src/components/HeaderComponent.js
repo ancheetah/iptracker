@@ -6,6 +6,7 @@ const useStyles = makeStyles({
         header: {
             color: 'white',
             backgroundImage: `url(${process.env.PUBLIC_URL + '/pattern-bg.png'})`,
+            backgroundSize: 'cover',
             padding: '4rem',
             height: 250,
         },
